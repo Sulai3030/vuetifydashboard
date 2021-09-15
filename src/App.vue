@@ -1,50 +1,67 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
+      <v-app-toolbar-title> Vuetify Dashboard </v-app-toolbar-title>
       <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <v-btn text rounded>Home</v-btn>
+      <v-btn text rounded>Login</v-btn>
     </v-app-bar>
-
-    <v-main>
-      <router-view />
-    </v-main>
+    <v-spacer></v-spacer>
+    <v-card width="400" class="mx-auto mt-5">
+      <v-card-title>
+        <h1 class="display-1">Login</h1>
+      </v-card-title>
+      <v-card-title>
+        <v-card-text>
+          <v-form>
+            <v-text-field label="User"></v-text-field>
+            <v-text-field
+              :type="showPassword ? 'text' : 'password'"
+              label="Password"
+              prepend-icon="mdi-lock"
+              append-icon="showPassword ? 'mdi-eye-off'
+              'mdi-eye-off'"
+              @click:append="showPassword = !showPassword"
+            ></v-text-field>
+          </v-form>
+        </v-card-text>
+        <v-divider></v-divider>
+        <v-card-actions>
+          <v-btn color="success">Register</v-btn>
+          <v-spacer></v-spacer>
+          <v-btn color="success">Login</v-btn>
+        </v-card-actions>
+      </v-card-title>
+    </v-card>
+    <v-footer color="primary lighten-1" padless>
+      <v-row justify="center" no-gutters>
+        <v-btn
+          v-for="link in links"
+          :key="link"
+          color="white"
+          text
+          rounded
+          class="my-2"
+        >
+          {{ link }}
+        </v-btn>
+        <v-flex primary lighten-2 py-4 text-center white--text xs-12> </v-flex>
+        <v-col class="primary lighten-2 py-4 text-center white--text" cols="12">
+          {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+        </v-col>
+      </v-row>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
 export default {
   name: "App",
-
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      showPassword: false,
+      links: ["Home", "Login"],
+    };
+  },
 };
 </script>
