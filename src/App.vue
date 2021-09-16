@@ -3,9 +3,18 @@
     <v-app-bar app color="primary" dark>
       <v-app-toolbar-title> Vuetify Dashboard </v-app-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn text rounded>Home</v-btn>
-      <v-btn text rounded>Login</v-btn>
+      <v-btn
+        v-for="link in links"
+        y
+        :key="`${link.label}-header-link`"
+        text
+        rounded
+        :to="link.url"
+      >
+        {{ link.label }}
+      </v-btn>
     </v-app-bar>
+    <v-content></v-content>
     <v-spacer></v-spacer>
     <v-card width="400" class="mx-auto mt-5">
       <v-card-title>
@@ -33,17 +42,18 @@
         </v-card-actions>
       </v-card-title>
     </v-card>
+    <router-view></router-view>
     <v-footer color="primary lighten-1" padless>
       <v-row justify="center" no-gutters>
         <v-btn
           v-for="link in links"
-          :key="link"
-          color="white"
+          y
+          :key="`${link.label}-header-link`"
           text
           rounded
-          class="my-2"
+          :to="link.url"
         >
-          {{ link }}
+          {{ link.label }}
         </v-btn>
         <v-flex primary lighten-2 py-4 text-center white--text xs-12> </v-flex>
         <v-col class="primary lighten-2 py-4 text-center white--text" cols="12">
@@ -60,7 +70,24 @@ export default {
   data() {
     return {
       showPassword: false,
-      links: ["Home", "Login"],
+      links: [
+        {
+          label: "Home",
+          url: "/",
+        },
+        {
+          label: "login",
+          url: "login",
+        },
+        {
+          label: "About",
+          url: "about",
+        },
+        {
+          label: "Dashboard",
+          url: "dashboard",
+        },
+      ],
     };
   },
 };
