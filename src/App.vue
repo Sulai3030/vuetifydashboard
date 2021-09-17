@@ -1,11 +1,10 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark>
-      <v-app-toolbar-title> Vuetify Dashboard </v-app-toolbar-title>
+      <v-toolbar-title>Vuetify Dashboard</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn
         v-for="link in links"
-        y
         :key="`${link.label}-header-link`"
         text
         rounded
@@ -14,26 +13,26 @@
         {{ link.label }}
       </v-btn>
     </v-app-bar>
-    <v-content></v-content>
-    <v-spacer></v-spacer>
-    <router-view></router-view>
+    <v-content>
+      <router-view></router-view>
+    </v-content>
     <v-footer color="primary lighten-1" padless>
-      <v-row justify="center" no-gutters>
+      <v-layout justify-center wrap>
         <v-btn
           v-for="link in links"
-          y
-          :key="`${link.label}-header-link`"
+          :key="`${link.label}-footer-link`"
+          color="white"
           text
           rounded
+          class="my-2"
           :to="link.url"
         >
           {{ link.label }}
         </v-btn>
-        <v-flex primary lighten-2 py-4 text-center white--text xs-12> </v-flex>
-        <v-col class="primary lighten-2 py-4 text-center white--text" cols="12">
-          {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
-        </v-col>
-      </v-row>
+        <v-flex primary lighten-2 py-4 text-center white--text xs12>
+          {{ new Date().getFullYear() }} — <strong>Vuetify Dashboard</strong>
+        </v-flex>
+      </v-layout>
     </v-footer>
   </v-app>
 </template>
@@ -43,23 +42,22 @@ export default {
   name: "App",
   data() {
     return {
-      showPassword: false,
       links: [
         {
           label: "Home",
           url: "/",
         },
         {
-          label: "login",
-          url: "login",
-        },
-        {
-          label: "About",
-          url: "about",
+          label: "Login",
+          url: "/login",
         },
         {
           label: "Dashboard",
-          url: "dashboard",
+          url: "/dashboard",
+        },
+        {
+          label: "Signup",
+          url: "/signup",
         },
       ],
     };
